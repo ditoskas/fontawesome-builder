@@ -180,6 +180,18 @@ class FaIcon
 		return $this;
 	}
 
+	public function wrapped($tag, $options = [])
+	{
+		if (empty($options)){
+			$this->setConfigItem('wrapped', $tag);
+		}
+		else {
+			$options = array_merge(['tag' => $tag], $options);
+			$this->setConfigItem('wrapped', $options);
+		}
+		return $this;
+	}
+
 	public function icon($name)
 	{
 		$config = $this->getConfig();

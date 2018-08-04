@@ -20,6 +20,36 @@ class FontAwesomeBuilder
 			$collection,
 			$name
 		];
+		$wrappedStartTag = $wrappedEndTag = null;
+		if (isset($options['wrapped'])){
+			if (is_array($options['wrapped'])){
+				$wrappedStartTag = '<'.$options['wrapped']['tag'];
+				if (isset($options['wrapped']['class'])){
+					$wrappedStartTag .= ' class="'.$options['wrapped']['class'].'"';
+				}
+				if (isset($options['wrapped']['style'])){
+					$wrappedStartTag .= ' style="'.$options['wrapped']['style'].'"';
+				}
+				$wrappedStartTag .= '>';
+				$wrappedEndTag = '</'.$options['wrapped']['tag'].'>';
+			}
+			else {
+				$wrappedStartTag = '<'.$options['wrapped'].'>';
+				$wrappedEndTag = '</'.$options['wrapped'].'>';
+			}
+		}
+		unset($options['wrapped']);
+		$text = null;
+		if (isset($options['text'])){
+			if (isset($options['escape']) && $options['escape'] === false){
+				$text = $options['text'];
+			}
+			else {
+				$text = htmlentities($options['text']);
+			}
+		}
+		unset($options['escape']);
+		unset($options['text']);
 		self::addClassIfOptionExists('size', $classes, $options);
 		self::addClassIfOptionExists('class', $classes, $options);
 		self::addClassIfOptionExists('rotate', $classes, $options);
@@ -31,14 +61,14 @@ class FontAwesomeBuilder
 		self::addStaticClassIfOptionExists('bordered', $classes, $options);
 
 		$options['class'] = implode(' ',$classes);
-		$result = '<'.$tag.' class="'.$options['class'].'"';
+		$result = $wrappedStartTag.'<'.$tag.' class="'.$options['class'].'"';
 		if (isset($options['transform'])){
 			$result .= ' data-fa-transform="'.$options['transform'].'"';
 		}
 		if (isset($options['mask'])){
 			$result .= ' data-fa-mask="'.$options['mask'].'"';
 		}
-		$result .= '></'.$tag.'>';
+		$result .= '></'.$tag.'>'.$text.$wrappedEndTag;
 		return $result;
 	}
 

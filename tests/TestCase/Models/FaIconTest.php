@@ -150,6 +150,17 @@ class FaIconTest extends TestCase
 		$result = $this->faIcon->size(FontSizeEnum::X10)->icon(FontAwesomeClassEnum::STROOPWAFEL);
 		$this->assertEquals('<i class="fas fa-stroopwafel fa-10x"></i>', $result);
 	}
+
+	public function testBasicWrappedUse()
+	{
+		$expected = '<span style="font-size: 3em; color: Tomato;"><i class="fas fa-stroopwafel"></i></span>';
+		$result = $this->faIcon->create()
+			->solid()
+			->wrapped('span',['style' => 'font-size: 3em; color: Tomato;'])
+			->icon(FontAwesomeClassEnum::STROOPWAFEL);
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testBasicStyledUse()
 	{
 		$expected = '<span class="blue-stroopwafel"><i class="far fa-stroopwafel"></i></span>';
