@@ -213,6 +213,18 @@ class FaIcon
 		return $this;
 	}
 
+	public function style($style)
+	{
+		$this->setConfigItem('style', $style);
+		return $this;
+	}
+
+	public function text($text)
+	{
+		$this->setConfigItem('text', $text);
+		return $this;
+	}
+
 	public function tag($tag)
 	{
 		$this->setConfigItem('tag', $tag);

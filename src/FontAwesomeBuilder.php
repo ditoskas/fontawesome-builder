@@ -62,6 +62,9 @@ class FontAwesomeBuilder
 
 		$options['class'] = implode(' ',$classes);
 		$result = $wrappedStartTag.'<'.$tag.' class="'.$options['class'].'"';
+		if (isset($options['style'])){
+			$result .= ' style="'.$options['style'].'"';
+		}
 		if (isset($options['transform'])){
 			$result .= ' data-fa-transform="'.$options['transform'].'"';
 		}

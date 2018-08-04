@@ -151,6 +151,18 @@ class FaIconTest extends TestCase
 		$this->assertEquals('<i class="fas fa-stroopwafel fa-10x"></i>', $result);
 	}
 
+	public function testBasicWrappedTextUse()
+	{
+		$expected = '<div><i class="fas fa-home" style="background:MistyRose"></i> Home</div>';
+		$result = $this->faIcon->create()
+			->solid()
+			->wrapped('div')
+			->style('background:MistyRose')
+			->text(' Home')
+			->icon(FontAwesomeClassEnum::HOME);
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testBasicWrappedUse()
 	{
 		$expected = '<span style="font-size: 3em; color: Tomato;"><i class="fas fa-stroopwafel"></i></span>';
