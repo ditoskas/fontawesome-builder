@@ -81,7 +81,7 @@ class FontAwesomeBuilder
 		return '<span class="'.$styleClass.'">'.$icon.'</span>';
 	}
 
-	public function stackIcons($icons, $options = [])
+	public static function stackIcons($icons, $options = [])
 	{
 		if (count($icons) !== 2){
 			throw new \Exception('There must be exactly 2 icons');

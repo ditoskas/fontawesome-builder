@@ -201,6 +201,10 @@ class FaIcon
 		return FontAwesomeBuilder::icon($name,$this->getConfig());
 	}
 
+	public function stackIcons($icons, $options = []){
+		return FontAwesomeBuilder::stackIcons($icons, $options);
+	}
+
 	public function create($config = [])
 	{
 		if (empty($config)){

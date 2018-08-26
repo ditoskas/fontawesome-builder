@@ -4,6 +4,7 @@ namespace FontAwesomeBuilder\Enum;
 
 class FaRotateEnum
 {
+    const ROTATE_30 = "fa-rotate-30";
     const ROTATE_90 = "fa-rotate-90";
     const ROTATE_180 = "fa-rotate-180";
     const ROTATE_270 = "fa-rotate-270";
