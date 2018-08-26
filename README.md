@@ -17,7 +17,7 @@ or run
 composer require ditoskas/fontawesome-builder
 ```
 
-To use the library on the project, add the use statement and call the static functions
+To use the library on the project, add the use statement, declare a FaIcon model or use the static FontAwesomeBuilder and call the icon function. 
 
 ```php
 <?php
@@ -27,4 +27,4 @@ $faIcon = new FaIcon();
 echo $faIcon->create()->icon(FontAwesomeClassEnum::STROOPWAFEL);
 
 ```
-Check the [documentation](https://) page with more examples
+Check the [documentation](https://ditoskas.github.io/fontawesome-builder/) page with more examples
