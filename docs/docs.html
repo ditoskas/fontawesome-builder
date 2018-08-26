@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Documentation for fontawesome-builder</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="fontawesome-builder is a library to help you render the fontawesome library using PHP">
+    <meta name="author" content="Toskas Dimitrios">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+
+<body class="body-blue">
+    <section id="top"></section>
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span class="text-highlight">fontawesome</span>-<span class="text-bold">builder</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="folderStructure" class="doc-section">
+                                <h2 class="section-title">Folder Structure</h2>
+                                <div class="section-block">
+                                    <p>The library has 3 folders and one base class the includes all the static methods for the font icons creation.</p>
+                                    <ul>
+                                        <li><strong>Enum</strong> - Collection of constants that be used</li>
+                                        <li><strong>Models</strong> - The main helper class to create font-icons</li>
+                                        <li><strong>Traits</strong> - Generic helper classes</li>
+                                    </ul>
+                                    <p>The below examples will use the variable $faIcon which is a instance of faIcon model</p>
+                                    <pre><code class="language-php">$faIcon = new \FontAwesomeBuilder\Models\FaIcon();</code></pre>
+                                    <p>To initialize the creation of new icon call the method create</p>
+                                    <pre><code class="language-php">$faIcon->create();</code></pre>
+                                    <p>To set the default collection and tag that will be used for the icons set it to model initialization</p>
+                                    <pre><code class="language-php">$faIcon = new \FontAwesomeBuilder\Models\FaIcon(['tag' => 'i', 'collection' => FontAwesomeCollectionEnum::SOLID ]);</code></pre>
+                                    <p>To change the tag and the collection on the fly</p>
+                                    <pre><code class="language-php">$faIcon->create()->tag('span')->regular() or ->solid() or ->brand() or ->light()</code></pre>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="basicUse" class="doc-section">
+                                <h2 class="section-title">Basic Use</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <i class="fas fa-stroopwafel"></i>
+                                            <span class="fas fa-stroopwafel"></span>
+                                            <i class="fab fa-font-awesome"></i>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php">
+                                                <code >
+echo $faIcon->create()->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->create()->tag('span')->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->create()->brand()->icon(FontAwesomeClassEnum::FONT_AWESOME);
+                                                </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;i class="fas fa-stroopwafel">&lt;/i>
+&lt;span class="fas fa-stroopwafel">&lt;/span>
+&lt;i class="fab fa-font-awesome">&lt;/i>
+                                                </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="sizingIcons" class="doc-section">
+                                <h2 class="section-title">Sizing Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <i class="fas fa-stroopwafel fa-xs"></i>
+                                            <i class="fas fa-stroopwafel fa-sm"></i>
+                                            <i class="fas fa-stroopwafel fa-lg"></i>
+                                            <i class="fas fa-stroopwafel fa-2x"></i>
+                                            <i class="fas fa-stroopwafel fa-3x"></i>
+                                            <i class="fas fa-stroopwafel fa-5x"></i>
+                                            <i class="fas fa-stroopwafel fa-7x"></i>
+                                            <i class="fas fa-stroopwafel fa-10x"></i>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo $faIcon->create()->size(FontSizeEnum::XS)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::SM)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::LG)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::X2)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::X3)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::X5)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::X7)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo $faIcon->size(FontSizeEnum::X10)->icon(FontAwesomeClassEnum::STROOPWAFEL);
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;i class="fas fa-stroopwafel fa-xs">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-sm">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-lg">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-2x">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-3x">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-5x">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-7x">&lt;/i>
+&lt;i class="fas fa-stroopwafel fa-10x">&lt;/i>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="fixedWidthIcons" class="doc-section">
+                                <h2 class="section-title">Fixed-Width Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div style="font-size: 2rem;">
+                                                <div><i class="fas fa-home fa-fw" style="background:MistyRose"></i> Home</div>
+                                                <div><i class="fas fa-info fa-fw" style="background:MistyRose"></i> Info</div>
+                                                <div><i class="fas fa-book fa-fw" style="background:MistyRose"></i> Library</div>
+                                                <div><i class="fas fa-pencil-alt fa-fw" style="background:MistyRose"></i> Applications</div>
+                                                <div><i class="fas fa-cog fa-fw" style="background:MistyRose"></i> Settings</div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div style="font-size: 2rem;">';
+echo $faIcon->create()
+	->wrapped('div')
+    ->fixed()
+	->style('background:MistyRose')
+	->text(' Home')
+	->icon(FontAwesomeClassEnum::HOME);
+echo $faIcon->create()
+	->wrapped('div')
+	->fixed()
+	->style('background:MistyRose')
+	->text(' Info')
+	->icon(FontAwesomeClassEnum::INFO);
+echo $faIcon->create()
+	->wrapped('div')
+	->fixed()
+	->style('background:MistyRose')
+	->text(' Library')
+	->icon(FontAwesomeClassEnum::BOOK);
+echo $faIcon->create()
+	->wrapped('div')
+	->fixed()
+	->style('background:MistyRose')
+	->text(' Applications')
+	->icon(FontAwesomeClassEnum::PENCIL_ALT);
+echo $faIcon->create()
+	->wrapped('div')
+	->fixed()
+	->style('background:MistyRose')
+	->text(' Settings')
+	->icon(FontAwesomeClassEnum::COG);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div style="font-size: 2rem;">
+    &lt;div>&lt;i class="fas fa-home fa-fw" style="background:MistyRose">&lt;/i> Home&lt;/div>
+    &lt;div>&lt;i class="fas fa-info fa-fw" style="background:MistyRose">&lt;/i> Info&lt;/div>
+    &lt;div>&lt;i class="fas fa-book fa-fw" style="background:MistyRose">&lt;/i> Library&lt;/div>
+    &lt;div>&lt;i class="fas fa-pencil-alt fa-fw" style="background:MistyRose">&lt;/i> Applications&lt;/div>
+    &lt;div>&lt;i class="fas fa-cog fa-fw" style="background:MistyRose">&lt;/i> Settings&lt;/div>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="rotatingIcons" class="doc-section">
+                                <h2 class="section-title">Rotating Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-4x">
+                                                <i class="fab fa-font-awesome"></i>
+                                                <i class="fab fa-font-awesome fa-rotate-90"></i>
+                                                <i class="fab fa-font-awesome fa-rotate-180"></i>
+                                                <i class="fab fa-font-awesome fa-rotate-270"></i>
+                                                <i class="fab fa-font-awesome fa-flip-horizontal"></i>
+                                                <i class="fab fa-font-awesome fa-flip-vertical"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-4x">';
+echo $faIcon->create()->brand()->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo $faIcon->rotate(FaRotateEnum::ROTATE_90)->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo $faIcon->rotate(FaRotateEnum::ROTATE_180)->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo $faIcon->rotate(FaRotateEnum::ROTATE_270)->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo $faIcon->rotate(FaRotateEnum::ROTATE_FLIP_HORIZONTAL)->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo $faIcon->rotate(FaRotateEnum::ROTATE_FLIP_VERTICAL)->icon(FontAwesomeClassEnum::FONT_AWESOME);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div class="fa-4x">
+    &lt;i class="fab fa-font-awesome">&lt;/i>
+    &lt;i class="fab fa-font-awesome fa-rotate-90">&lt;/i>
+    &lt;i class="fab fa-font-awesome fa-rotate-180">&lt;/i>
+    &lt;i class="fab fa-font-awesome fa-rotate-270">&lt;/i>
+    &lt;i class="fab fa-font-awesome fa-flip-horizontal">&lt;/i>
+    &lt;i class="fab fa-font-awesome fa-flip-vertical">&lt;/i>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="animatingIcons" class="doc-section">
+                                <h2 class="section-title">Animating Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-3x">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <i class="fas fa-circle-notch fa-spin"></i>
+                                                <i class="fas fa-sync fa-spin"></i>
+                                                <i class="fas fa-cog fa-spin"></i>
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <i class="fas fa-stroopwafel fa-spin"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-3x">';
+echo $faIcon->create()->animate()->icon(FontAwesomeClassEnum::CIRCLE_NOTCH);
+echo $faIcon->icon(FontAwesomeClassEnum::SYNC);
+echo $faIcon->icon(FontAwesomeClassEnum::COG);
+echo $faIcon->icon(FontAwesomeClassEnum::SPINNER);
+echo $faIcon->icon(FontAwesomeClassEnum::STROOPWAFEL);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div class="fa-3x">
+    &lt;i class="fas fa-spinner fa-spin">&lt;/i>
+    &lt;i class="fas fa-circle-notch fa-spin">&lt;/i>
+    &lt;i class="fas fa-sync fa-spin">&lt;/i>
+    &lt;i class="fas fa-cog fa-spin">&lt;/i>
+    &lt;i class="fas fa-spinner fa-spin">&lt;/i>
+    &lt;i class="fas fa-stroopwafel fa-spin">&lt;/i>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="borderedPulledIcons" class="doc-section">
+                                <h2 class="section-title">Bordered + Pulled Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <i class="fas fa-quote-left fa-2x fa-pull-left"></i>
+                                            Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+                                            It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+                                            And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+$text = 'Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.';
+echo $faIcon->create()->size(FontSizeEnum::X2)->left()->text($text)->icon(FontAwesomeClassEnum::QUOTE_LEFT);
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;i class="fas fa-quote-left fa-2x fa-pull-left">&lt;/i>
+Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <i class="fas fa-arrow-right fa-2x fa-pull-right fa-border"></i>
+                                            Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+                                            It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+                                            And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+$text = 'Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.';
+echo $faIcon->create()->size(FontSizeEnum::X2)->right()->bordered()->text($text)->icon(FontAwesomeClassEnum::ARROW_RIGHT);
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;i class="fas fa-arrow-right fa-2x fa-pull-right fa-border">&lt;/i>
+Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="stackingIcons" class="doc-section">
+                                <h2 class="section-title">Stacking Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <span class="fa-stack fa-2x">
+                                              <i class="fas fa-square fa-stack-2x"></i>
+                                              <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <span class="fa-stack fa-2x">
+                                              <i class="fas fa-circle fa-stack-2x"></i>
+                                              <i class="fas fa-flag fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <span class="fa-stack fa-2x">
+                                              <i class="fas fa-square fa-stack-2x"></i>
+                                              <i class="fas fa-terminal fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <span class="fa-stack fa-4x">
+                                              <i class="fas fa-square fa-stack-2x"></i>
+                                              <i class="fas fa-terminal fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <span class="fa-stack fa-2x">
+                                              <i class="fas fa-camera fa-stack-1x"></i>
+                                              <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
+                                            </span>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+$icons = [
+        FontAwesomeClassEnum::SQUARE,
+        FontAwesomeClassEnum::TWITTER
+];
+$options = [
+        'size' => FontSizeEnum::X2,
+        'icon1' => ['collection' => FontAwesomeCollectionEnum::SOLID],
+        'icon2' => ['collection' => FontAwesomeCollectionEnum::BRAND, 'class' => 'fa-inverse']
+];
+echo \FontAwesomeBuilder\FontAwesomeBuilder::stackIcons($icons, $options);
+OR
+echo $faIcon->stackIcons($icons, $options);
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;span class="fa-stack fa-2x">
+  &lt;i class="fas fa-square fa-stack-2x">&lt;/i>
+  &lt;i class="fab fa-twitter fa-stack-1x fa-inverse">&lt;/i>
+&lt;/span>
+&lt;span class="fa-stack fa-2x">
+  &lt;i class="fas fa-circle fa-stack-2x">&lt;/i>
+  &lt;i class="fas fa-flag fa-stack-1x fa-inverse">&lt;/i>
+&lt;/span>
+&lt;span class="fa-stack fa-2x">
+  &lt;i class="fas fa-square fa-stack-2x">&lt;/i>
+  &lt;i class="fas fa-terminal fa-stack-1x fa-inverse">&lt;/i>
+&lt;/span>
+&lt;span class="fa-stack fa-4x">
+  &lt;i class="fas fa-square fa-stack-2x">&lt;/i>
+  &lt;i class="fas fa-terminal fa-stack-1x fa-inverse">&lt;/i>
+&lt;/span>
+&lt;span class="fa-stack fa-2x">
+  &lt;i class="fas fa-camera fa-stack-1x">&lt;/i>
+  &lt;i class="fas fa-ban fa-stack-2x" style="color:Tomato">&lt;/i>
+&lt;/span>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="powerTransformsScaling" class="doc-section">
+                                <h2 class="section-title">Power Transforms - Scaling</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-4x">
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="grow-6" style="background:MistyRose"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-4x">';
+echo $faIcon->create()->solid()->shrink(8)->style('background:MistyRose')->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->grow(6)->icon(FontAwesomeClassEnum::MAGIC);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div class="fa-4x">
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" data-fa-transform="grow-6" style="background:MistyRose">&lt;/i>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="powerTransformsPositioning" class="doc-section">
+                                <h2 class="section-title">Power Transforms - Positioning</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-4x">
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8 up-6" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8 right-6" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8 down-6" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="shrink-8 left-6" style="background:MistyRose"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-4x">';
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(8)->positionUp(6)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(8)->positionRight(6)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(8)->positionDown(6)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(8)->positionLeft(6)->icon(FontAwesomeClassEnum::MAGIC);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div class="fa-4x">
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8 up-6" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8 right-6" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8 down-6" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-magic" data-fa-transform="shrink-8 left-6" style="background:MistyRose">&lt;/i>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="powerTransformsRotatingAndFlipping" class="doc-section">
+                                <h2 class="section-title">Power Transforms - Rotating & Flipping</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-4x">
+                                                <i class="fas fa-magic" data-fa-transform="rotate-90" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="rotate-180" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="rotate-270" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="flip-v" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="flip-h" style="background:MistyRose"></i>
+                                                <i class="fas fa-magic" data-fa-transform="flip-v flip-h" style="background:MistyRose"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-4x">';
+echo $faIcon->create()->solid()->style('background:MistyRose')->rotate(FaRotateEnum::ROTATE_90)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->rotate(FaRotateEnum::ROTATE_180)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->rotate(FaRotateEnum::ROTATE_270)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->rotate(FaRotateEnum::ROTATE_FLIP_HORIZONTAL)->icon(FontAwesomeClassEnum::MAGIC);
+echo $faIcon->create()->solid()->style('background:MistyRose')->rotate(FaRotateEnum::ROTATE_FLIP_VERTICAL)->icon(FontAwesomeClassEnum::MAGIC);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code></code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="maskingIcons" class="doc-section">
+                                <h2 class="section-title">Masking Icons</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            <div class="fa-4x">
+                                                <i class="fas fa-pencil-alt" data-fa-transform="shrink-10 up-.5" data-fa-mask="fas fa-comment" style="background:MistyRose"></i>
+                                                <i class="fab fa-facebook-f" data-fa-transform="shrink-3.5 down-1.6 right-1.25" data-fa-mask="fas fa-circle" style="background:MistyRose"></i>
+                                                <i class="fas fa-headphones" data-fa-transform="shrink-6" data-fa-mask="fas fa-square" style="background:MistyRose"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Code in PHP</h5>
+                                            <pre class="language-php"><code>
+echo '&lt;div class="fa-4x">';
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(10)->positionUp(.5)
+    ->mask(FontAwesomeCollectionEnum::SOLID, FontAwesomeClassEnum::COMMENT)->icon(FontAwesomeClassEnum::PENCIL_ALT);
+echo $faIcon->create()->brand()->style('background:MistyRose')->shrink(3.5)->positionComplex(null, 1.25, 1.6, null)
+	->mask(FontAwesomeCollectionEnum::SOLID, FontAwesomeClassEnum::CIRCLE)->icon(FontAwesomeClassEnum::FACEBOOK_F);
+echo $faIcon->create()->solid()->style('background:MistyRose')->shrink(6)
+	->mask(FontAwesomeCollectionEnum::SOLID, FontAwesomeClassEnum::SQUARE)->icon(FontAwesomeClassEnum::HEADPHONES);
+echo '&lt;/div>';
+                                            </code></pre>
+                                            <h5 class="card-title">HTML Result</h5>
+                                            <pre class="language-html"><code>
+&lt;div class="fa-4x">
+    &lt;i class="fas fa-pencil-alt" data-fa-transform="shrink-10 up-.5" data-fa-mask="fas fa-comment" style="background:MistyRose">&lt;/i>
+    &lt;i class="fab fa-facebook-f" data-fa-transform="shrink-3.5 down-1.6 right-1.25" data-fa-mask="fas fa-circle" style="background:MistyRose">&lt;/i>
+    &lt;i class="fas fa-headphones" data-fa-transform="shrink-6" data-fa-mask="fas fa-square" style="background:MistyRose">&lt;/i>
+&lt;/div>
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="layeringTextCounters" class="doc-section">
+                                <h2 class="section-title">Layering, Text and Counters</h2>
+                                <div class="section-block">
+                                    <div class="card bg-light">
+                                        <div class="card-header">
+                                            Under development, schedule for next release
+                                        </div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#folderStructure">Folder Structure</a>
+                                <a class="nav-link scrollto" href="#basicUse">Basic Use</a>
+                                <a class="nav-link scrollto" href="#sizingIcons">Sizing Icons</a>
+                                <a class="nav-link scrollto" href="#fixedWidthIcons">Fixed-Width Icons</a>
+                                <a class="nav-link scrollto" href="#rotatingIcons">Rotating Icons</a>
+                                <a class="nav-link scrollto" href="#animatingIcons">Animating Icons</a>
+                                <a class="nav-link scrollto" href="#borderedPulledIcons">Bordered + Pulled Icons</a>
+                                <a class="nav-link scrollto" href="#stackingIcons">Stacking Icons</a>
+                                <a class="nav-link scrollto" href="#powerTransformsScaling">Power Transforms - Scaling</a>
+                                <a class="nav-link scrollto" href="#powerTransformsPositioning">Power Transforms - Positioning</a>
+                                <a class="nav-link scrollto" href="#powerTransformsRotatingAndFlipping">Power Transforms - Rotating & Flipping</a>
+                                <a class="nav-link scrollto" href="#maskingIcons">Masking Icons</a>
+                                <a class="nav-link scrollto" href="#layeringTextCounters">Layering, Text and Counters</a>
+                                <a class="nav-link scrollto" href="#top">Top</a>
+                            </nav><!--//doc-menu-->
+                        </div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+    </div><!--//page-wrapper-->
+
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+
+        </div><!--//container-->
+    </footer><!--//footer-->
+
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>  
+    <script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>       
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                            
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+
